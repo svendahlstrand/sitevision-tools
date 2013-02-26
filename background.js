@@ -1,16 +1,51 @@
-function onBeforeNavigate(details) {
-  var newTabHost = details.url.replace(/^https?:\/\/([^\/]+)(.*)/, '$1');
+var tabUrlHandler = (function() {
+  var urls = {},
 
-  chrome.tabs.query({ title: 'SiteVision Server editor' }, function (tabs) {
-    tabs.forEach(function (tab) {
-      var host = tab.url.replace(/^https?:\/\/([^\/]+)(.*)/, '$1');
-
-      if (tab.id != details.tabId && host == newTabHost) {
-        chrome.tabs.remove(details.tabId);
-        chrome.tabs.highlight({ tabs: tab.index }, function () {});
-      }
+  queryTabsCallback = function(allTabs) {
+    allTabs.forEach(function(tab) {
+      updateTabCallback(tab.id, null, tab);
     });
-  });
+  },
+
+  updateTabCallback = function(tabId, changeinfo, tab) {
+    urls[tabId] = tab.url.replace(/^https?:\/\/([^\/]+)(.*)/, '$1');;
+  },
+
+  removeTabCallback = function(tabId, removeinfo) {
+    delete urls[tabId];
+  };
+
+  init = function() {
+    chrome.tabs.query({}, queryTabsCallback);
+  };
+
+  chrome.runtime.onInstalled.addListener(init);
+  chrome.runtime.onStartup.addListener(init);
+  chrome.tabs.onUpdated.addListener(updateTabCallback);
+  chrome.tabs.onRemoved.addListener(removeTabCallback);
+
+  return {
+    contains: function(url, tabId) {
+      var host = url.replace(/^https?:\/\/([^\/]+)(.*)/, '$1');
+      for (var urlId in urls) {
+        if (urlId != tabId && urls[urlId] == host) {
+          return urlId;
+        }
+      }
+
+      return false;
+    }
+  };
+}());
+
+
+function onBeforeRequest(details) {
+  var websiteAlreadyOpenInTabId = tabUrlHandler.contains(details.url, details.tabId);
+
+  if (websiteAlreadyOpenInTabId) {
+    chrome.tabs.update(parseInt(websiteAlreadyOpenInTabId, 10), { active: true });
+    return { redirectUrl: 'javascript: void 0' };
+  }
 }
 
 function onMessage(message, sender, sendResponse) {
@@ -20,4 +55,7 @@ function onMessage(message, sender, sendResponse) {
 }
 
 chrome.extension.onMessage.addListener(onMessage);
-chrome.webNavigation.onBeforeNavigate.addListener(onBeforeNavigate, { url: [{ pathPrefix: '/editor' }] });
+chrome.webRequest.onBeforeRequest.addListener(
+  onBeforeRequest,
+  { urls: ['*://*/editor*'], types: ['main_frame'] },
+  ['blocking']);
