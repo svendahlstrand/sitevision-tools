@@ -1,19 +1,21 @@
-var utils = {
-  isSiteVision: function () {
-    var stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+(function () {
+  var utils = {
+    isSiteVision: function () {
+      var stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
 
-    for (var i = 0; i < stylesheets.length; i++) {
-      var stylesheet = stylesheets[i];
+      for (var i = 0; i < stylesheets.length; i++) {
+        var stylesheet = stylesheets[i];
 
-      if (stylesheet.href.indexOf('/sitevision') != -1) {
-        return true;
+        if (stylesheet.href.indexOf('/sitevision') != -1) {
+          return true;
+        }
       }
+
+      return false;
     }
+  };
 
-    return false;
+  if (utils.isSiteVision()) {
+    chrome.extension.sendMessage({});
   }
-};
-
-if (utils.isSiteVision()) {
-  chrome.extension.sendMessage({});
-}
+}());

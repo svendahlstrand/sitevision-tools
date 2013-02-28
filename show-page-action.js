@@ -1,7 +1,7 @@
-function onMessage(message, sender, sendResponse) {
-  chrome.pageAction.show(sender.tab.id);
+(function () {
+  function showPageAction(message, sender, sendResponse) {
+    chrome.pageAction.show(sender.tab.id);
+  }
 
-  sendResponse({});
-}
-
-chrome.extension.onMessage.addListener(onMessage);
+  chrome.extension.onMessage.addListener(showPageAction);
+}());
