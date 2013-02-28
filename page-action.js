@@ -24,6 +24,13 @@
     window.close();
   }
 
+  function toggleProfiling() {
+    chrome.tabs.executeScript({ file: 'toggle-profiling.js' });
+
+    window.close();
+  }
+
   document.getElementById('editor').addEventListener('click', showEditor);
   document.getElementById('open-editor-page-in-new-tab').addEventListener('click', gedEditorPageUrl);
+  document.getElementById('profiling').addEventListener('click', toggleProfiling);
 }());
