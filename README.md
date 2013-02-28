@@ -13,6 +13,8 @@ Sist men inte minst: har du någon gång råkat hoppa in i redigeringsläge i me
 
 När du besöker en SiteVision-webbplats tänds en rosa hand-ikon längst till höger i adressfältet. Klickar du på den fälls en meny med alla alternativ ner.
 
+![](https://raw.github.com/svendahlstrand/sitevision-tools/master/screenshot.png)
+
 **Observera!** Alla menyalternativ är inte användbara i alla lägen. `Öppna i ny flik`har du bara nytta av i redigeringsläge till exempel. I en senare version kommer bara relevanta alternativ visas.
 
 ## Hur du installerar
