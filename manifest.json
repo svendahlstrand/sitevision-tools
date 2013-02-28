@@ -1,12 +1,16 @@
 {
-  "name": "SiteVision",
+  "name": "SiteVision-verktyg",
   "version": "0.3.0",
   "manifest_version": 2,
 
-  "description": "Ett verktyg för SiteVision-nördar.",
+  "description": "En samling verktyg som underlättar vardagen för utvecklare och administratörer.",
+  "icons": {
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
 
   "page_action": {
-    "default_icon": "icon.jpg",
+    "default_icon": "icons/38.png",
     "default_popup": "page-action.html"
   },
 
