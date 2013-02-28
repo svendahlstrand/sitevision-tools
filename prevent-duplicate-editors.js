@@ -1,6 +1,6 @@
 (function () {
   var tabUrlHandler = (function() {
-    var urls = {},
+    var editorHosts = {},
 
     queryTabsCallback = function(allTabs) {
       allTabs.forEach(function(tab) {
@@ -9,11 +9,15 @@
     },
 
     updateTabCallback = function(tabId, changeinfo, tab) {
-      urls[tabId] = tab.url.replace(/^https?:\/\/([^\/]+)(.*)/, '$1');;
+      if (changeinfo && changeinfo.status === 'complete') { return; }
+
+      var match = tab.url.match(/^https?:\/\/([^\/]+)\/editor/);
+
+      editorHosts[tabId] = match && match[1];
     },
 
     removeTabCallback = function(tabId, removeinfo) {
-      delete urls[tabId];
+      delete editorHosts[tabId];
     };
 
     init = function() {
@@ -26,11 +30,11 @@
     chrome.tabs.onRemoved.addListener(removeTabCallback);
 
     return {
-      contains: function(url, tabId) {
+      contains: function(url, currentTabId) {
         var host = url.replace(/^https?:\/\/([^\/]+)(.*)/, '$1');
-        for (var urlId in urls) {
-          if (urlId != tabId && urls[urlId] == host) {
-            return urlId;
+        for (var tabId in editorHosts) {
+          if (tabId != currentTabId && editorHosts[tabId] == host) {
+            return tabId;
           }
         }
 
