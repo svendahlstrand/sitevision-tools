@@ -1,11 +1,9 @@
 {
+  "name": "SiteVision",
+  "version": "0.1",
   "manifest_version": 2,
 
-  "name": "SiteVision",
   "description": "Ett verktyg för SiteVision-nördar.",
-  "version": "0.1",
-
-  "permissions": ["contextMenus", "tabs", "webRequest", "webRequestBlocking", "*://*/*"],
 
   "page_action": {
     "default_icon": "icon.jpg",
@@ -15,11 +13,12 @@
   "background" : {
     "scripts": ["background.js"]
   },
-
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
       "js": ["content-script.js"]
     }
-  ]
+  ],
+
+  "permissions": ["tabs", "webRequest", "webRequestBlocking", "*://*/editor*"]
 }
