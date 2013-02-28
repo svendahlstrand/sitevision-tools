@@ -13,14 +13,14 @@ Sist men inte minst: har du någon gång råkat hoppa in i redigeringsläge i me
 
 När du besöker en SiteVision-webbplats tänds en rosa hand-ikon längst till höger i adressfältet. Klickar du på den fälls en meny med alla alternativ ner.
 
-**Observera!** Alla menyalternativ är inte användbara i alla lägen. `Öppna i ny flik`har du bara nytta av i redigeringsläge, till exempel. I en senare version kommer bara relevanta alternativ visas.
+**Observera!** Alla menyalternativ är inte användbara i alla lägen. `Öppna i ny flik`har du bara nytta av i redigeringsläge till exempel. I en senare version kommer bara relevanta alternativ visas.
 
 ## Hur du installerar
 
 Än så länge finns inte tillägget i Chrome Web Store men det är lätt att installera själv:
 
 1. [Ladda hem tillägget](https://github.com/svendahlstrand/sitevision-tools/raw/builds/sitevision-tools.crx).
-2. [Gå till Tillägg i Chrome](chrome://extensions).
+2. Gå till Tillägg i Chrome genom att klistra in `chrome://extensions` i adressfältet.
 3. Dra och släpp tillägget på sidan.
 
-Nu är du klar!
+Nu är du klar! Besök en SiteVision-webbplats och leta efter ikonen i adressfältet.
