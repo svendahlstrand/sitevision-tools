@@ -12,12 +12,18 @@
     window.close();
   }
 
-  function toggleProfiling() {
-    console.log('not implemented yet');
+  function gedEditorPageUrl() {
+    chrome.tabs.executeScript({ file: 'get-editor-page-url.js' }, function (result) {
+      var url = result[0];
+
+      if (url) {
+        chrome.tabs.create({ url: url });
+      }
+    });
 
     window.close();
   }
 
   document.getElementById('editor').addEventListener('click', showEditor);
-  document.getElementById('profiling').addEventListener('click', toggleProfiling);
+  document.getElementById('open-editor-page-in-new-tab').addEventListener('click', gedEditorPageUrl);
 }());
