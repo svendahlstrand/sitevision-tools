@@ -1,0 +1,7 @@
+{
+  "profiling": { "message": "Profilering" },
+  "login": { "message": "Logga in" },
+  "open_in_new_tab": { "message": "Öppna i ny flik" },
+  "extension_name": { "message": "SiteVision-verktyg" },
+  "extension_description": { "message": "En samling verktyg som underlättar vardagen för utvecklare och administratörer." }
+}

@@ -1,13 +1,14 @@
 {
-  "name": "SiteVision-verktyg",
+  "name": "__MSG_extension_name__",
   "version": "0.4.0",
   "manifest_version": 2,
 
-  "description": "En samling verktyg som underlättar vardagen för utvecklare och administratörer.",
+  "description": "__MSG_extension_description__",
   "icons": {
     "48": "icons/48.png",
     "128": "icons/128.png"
   },
+  "default_locale": "sv",
 
   "page_action": {
     "default_icon": "icons/38.png",

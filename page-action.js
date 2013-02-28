@@ -30,7 +30,14 @@
     window.close();
   }
 
-  document.getElementById('editor').addEventListener('click', showEditor);
-  document.getElementById('open-editor-page-in-new-tab').addEventListener('click', gedEditorPageUrl);
-  document.getElementById('profiling').addEventListener('click', toggleProfiling);
+  function initializeButton(id, message, callback) {
+    var button = document.getElementById(id);
+
+    button.innerText = chrome.i18n.getMessage(message);
+    button.addEventListener('click', callback);
+  }
+
+  initializeButton('editor', 'login', showEditor);
+  initializeButton('open-editor-page-in-new-tab', 'open_in_new_tab', gedEditorPageUrl);
+  initializeButton('profiling', 'profiling', toggleProfiling);
 }());
