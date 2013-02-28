@@ -38,7 +38,6 @@ var tabUrlHandler = (function() {
   };
 }());
 
-
 function onBeforeRequest(details) {
   var websiteAlreadyOpenInTabId = tabUrlHandler.contains(details.url, details.tabId);
 
@@ -48,13 +47,6 @@ function onBeforeRequest(details) {
   }
 }
 
-function onMessage(message, sender, sendResponse) {
-  chrome.pageAction.show(sender.tab.id);
-
-  sendResponse({});
-}
-
-chrome.extension.onMessage.addListener(onMessage);
 chrome.webRequest.onBeforeRequest.addListener(
   onBeforeRequest,
   { urls: ['*://*/editor*'], types: ['main_frame'] },

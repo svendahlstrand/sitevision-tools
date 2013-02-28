@@ -7,16 +7,16 @@
 
   "page_action": {
     "default_icon": "icon.jpg",
-    "default_popup": "popup.html"
+    "default_popup": "page-action.html"
   },
 
   "background" : {
-    "scripts": ["background.js"]
+    "scripts": ["show-page-action.js", "prevent-duplicate-editors.js"]
   },
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["content-script.js"]
+      "js": ["identify-sitevision.js"]
     }
   ],
 
