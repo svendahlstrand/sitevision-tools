@@ -18,7 +18,7 @@
 
     removeTabCallback = function(tabId, removeinfo) {
       delete editorHosts[tabId];
-    };
+    },
 
     init = function() {
       chrome.tabs.query({}, queryTabsCallback);
