@@ -7,7 +7,7 @@
     };
 
     this.includes = function(name) {
-      re = '[?&]' + name;
+      var re = '[?&]' + name;
 
       return (this.raw.search(re) != -1);
     };
