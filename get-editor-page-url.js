@@ -1,3 +1,5 @@
 (function () {
-  return document.querySelector('frame[name="SiteVisionEditor"]').src.match(/(.+)\?/)[1];
+  var location = document.querySelector('frame[name="SiteVisionEditor"]').contentWindow.location;
+
+  return [location.protocol, '//', location.host, location.pathname].join('');
 }());
