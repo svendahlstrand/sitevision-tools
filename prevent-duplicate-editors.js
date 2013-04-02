@@ -11,7 +11,7 @@
     updateTabCallback = function(tabId, changeinfo, tab) {
       if (changeinfo && changeinfo.status === 'complete') { return; }
 
-      var match = tab.url.match(/^https?:\/\/([^\/]+)\/editor/);
+      var match = tab.url.match(/^https?:\/\/([^\/]+)\/editor(?!\/admin)/);
 
       editorHosts[tabId] = match && match[1];
     },
@@ -44,9 +44,10 @@
   }());
 
   function switchToOpenEditor(details) {
+    var isNotAdminTools = details.url.indexOf('editor/admin') == -1;
     var openEditorTabId = tabUrlHandler.contains(details.url, details.tabId);
 
-    if (openEditorTabId) {
+    if (isNotAdminTools && openEditorTabId) {
       chrome.tabs.update(parseInt(openEditorTabId, 10), { active: true });
       return { redirectUrl: 'javascript: void 0' };
     }
