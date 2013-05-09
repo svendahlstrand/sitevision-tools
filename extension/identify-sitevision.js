@@ -14,7 +14,8 @@
 
       // Editor mode
 
-      var title = document.querySelector('title').text;
+      var title = document.querySelector('title');
+      title = title ? title.text : '';
 
       if (title.indexOf('SiteVision Server editor') != -1) {
         return true;
