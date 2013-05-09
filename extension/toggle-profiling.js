@@ -43,7 +43,7 @@
   function Profiling() {
     this.queryString = new QueryString();
 
-    this.on = function() {
+    this.isProfilingActive = function() {
       var elements = document.getElementsByTagName('table');
 
       if (elements.length < 1) { return false; }
@@ -54,9 +54,7 @@
     };
 
     this.toggle = function() {
-      var mode = this.on() ? false : true;
-
-      this.queryString.set('profiling', mode);
+      this.queryString.set('profiling', !this.isProfilingActive());
     };
   }
 
