@@ -40,8 +40,6 @@
     };
   }
 
-
-
   var profiling = {
     queryString: new QueryString(),
 
@@ -57,9 +55,9 @@
 
     toggle: function() {
       this.queryString.set('profiling', !this.isProfilingActive());
+      this.queryString.reload();
     }
   };
 
   profiling.toggle();
-  profiling.queryString.reload();
 }());
