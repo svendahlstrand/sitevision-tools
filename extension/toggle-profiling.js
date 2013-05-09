@@ -40,10 +40,12 @@
     };
   }
 
-  function Profiling() {
-    this.queryString = new QueryString();
 
-    this.isProfilingActive = function() {
+
+  var profiling = {
+    queryString: new QueryString(),
+
+    isProfilingActive: function() {
       var elements = document.getElementsByTagName('table');
 
       if (elements.length < 1) { return false; }
@@ -51,14 +53,12 @@
       var index = elements[0].textContent.search(/Profiling results/i);
 
       return (index != -1);
-    };
+    },
 
-    this.toggle = function() {
+    toggle: function() {
       this.queryString.set('profiling', !this.isProfilingActive());
-    };
-  }
-
-  var profiling = new Profiling();
+    }
+  };
 
   profiling.toggle();
   profiling.queryString.reload();
