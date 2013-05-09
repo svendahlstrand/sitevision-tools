@@ -30,6 +30,19 @@
     window.close();
   }
 
+  function adminTools() {
+    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+      var tab = tabs[0];
+      var editorUrl = tab.url.replace(/^(https?:\/\/[^\/]+)(.*)/, '$1/editor/admin/index.html');
+
+      chrome.tabs.update(tab.id, {
+        url: editorUrl
+      });
+    });
+
+    window.close();
+  }
+
   function initializeButton(id, message, callback) {
     var button = document.getElementById(id);
 
@@ -40,4 +53,5 @@
   initializeButton('editor', 'login', showEditor);
   initializeButton('open-editor-page-in-new-tab', 'open_in_new_tab', gedEditorPageUrl);
   initializeButton('profiling', 'profiling', toggleProfiling);
+  initializeButton('admin-tools', 'admin_tools', adminTools);
 }());
