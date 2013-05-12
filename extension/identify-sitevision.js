@@ -13,11 +13,15 @@
       }
 
       // Editor mode
-
       var title = document.querySelector('title');
       title = title ? title.text : '';
 
       if (title.indexOf('SiteVision Server editor') != -1) {
+        return true;
+      }
+
+      // Admin tools mode
+      if (window.location.pathname.indexOf('/editor/admin') == 0) {
         return true;
       }
 
