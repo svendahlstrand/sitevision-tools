@@ -34,7 +34,7 @@
         var host = url.replace(/^https?:\/\/([^\/]+)(.*)/, '$1');
         for (var tabId in editorHosts) {
           if (tabId != currentTabId && editorHosts[tabId] == host) {
-            return tabId;
+            return parseInt(tabId, 10);
           }
         }
 
@@ -48,7 +48,7 @@
     var openEditorTabId = tabUrlHandler.contains(details.url, details.tabId);
 
     if (isNotAdminTools && openEditorTabId) {
-      chrome.tabs.update(parseInt(openEditorTabId, 10), { active: true });
+      chrome.tabs.update(openEditorTabId, { active: true });
       return { redirectUrl: 'javascript: void 0' };
     }
   }
