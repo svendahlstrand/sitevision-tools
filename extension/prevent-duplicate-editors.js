@@ -48,7 +48,11 @@
     var openEditorTabId = tabUrlHandler.contains(details.url, details.tabId);
 
     if (isNotAdminTools && openEditorTabId) {
-      chrome.tabs.update(openEditorTabId, { active: true });
+      chrome.tabs.get(openEditorTabId, function (tab) {
+        chrome.tabs.update(tab.id, { active: true });
+        chrome.windows.update(tab.windowId, { focused: true });
+      });
+
       return { redirectUrl: 'javascript: void 0' };
     }
   }
