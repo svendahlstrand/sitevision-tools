@@ -41,7 +41,7 @@
   };
 
   GridVisualizer.prototype.toggleColumns = function() {
-    this.toggle(this.columns, 'red');
+    this.toggle(this.columns, 'green');
   };
 
   GridVisualizer.prototype.toggleAll = function() {
