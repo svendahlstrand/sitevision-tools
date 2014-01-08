@@ -43,6 +43,12 @@
     window.close();
   }
 
+  function visualizeGrid() {
+    chrome.tabs.executeScript({ file: 'toggle-grid-visualizer.js' });
+
+    window.close();
+  }
+
   function initializeButton(id, message, callback) {
     var button = document.getElementById(id);
 
@@ -54,4 +60,5 @@
   initializeButton('open-editor-page-in-new-tab', 'open_in_new_tab', gedEditorPageUrl);
   initializeButton('profiling', 'profiling', toggleProfiling);
   initializeButton('admin-tools', 'admin_tools', adminTools);
+  initializeButton('visualize-grid', 'visualize_grid', visualizeGrid);
 }());
